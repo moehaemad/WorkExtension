@@ -2,5 +2,10 @@
 	"name": "Work Extension",
 	"version": "1.0",
 	"description": "learning google chrome extensions",
+	"background": {
+		"scripts": ["samplebackground.js"],
+		"persistent": false
+	},
+	"permissions": ["contextMenus"],
 	"manifest_version": 2
 }
