@@ -6,6 +6,9 @@
 		"scripts": ["samplebackground.js"],
 		"persistent": false
 	},
-	"permissions": ["contextMenus"],
+	"permissions": ["contextMenus", "storage", "declarativeContent"],
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
 	"manifest_version": 2
 }
