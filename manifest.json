@@ -6,7 +6,7 @@
 		"scripts": ["samplebackground.js"],
 		"persistent": false
 	},
-	"permissions": ["contextMenus", "storage", "declarativeContent"],
+	"permissions": ["contextMenus", "storage", "activeTab"],
 	"browser_action": {
 		"default_popup": "popup.html"
 	},
