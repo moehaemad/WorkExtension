@@ -16,35 +16,55 @@ const phoneExtensions = {
     other: "6"
 }
 
-chrome.contextMenus.onClicked.addListener(function (info, tabs) {
-    if (info.menuItemId === 'onlineChat') navigator.clipboard.writeTexT(forClipboard.onlineChat);
-    if (info.menuItemId === 'membershipWeb') window.open(forClipboard.membershipWeb);
-    if (info.menuItemId === 'noMarketplace') window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
+function contextFunctions(){
+    chrome.contextMenus.onClicked.addListener(function (info, tabs) {
+        switch (info.menuItemId){
+            case 'onlineChat':
+                navigator.clipboard.writeTexT(forClipboard.onlineChat);
+                break;
+            case 'membershipWeb':
+                window.open(forClipboard.membershipWeb);
+                break;
+            case 'noMarketplace':
+                window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
+                break;
+            default:
+                console.log("whoops, better luck next time")
+        }
+    });
+}
+
+function createContexts () {
+    chrome.contextMenus.create({
+        id: 'mainMenu',
+        title: 'something',
+        contexts: ['all'],
+    });
+    
+    chrome.contextMenus.create({
+        id: 'onlineChat',
+        title:'Geeksquad Connect',
+        contexts: ['all'],
+        parentId: 'mainMenu'
+    });
+    chrome.contextMenus.create({
+        id: 'membershipWeb',
+        title: 'Assurant portal',
+        contexts: ['all'],
+        parentId: 'mainMenu'
+    });
+    
+    // using just store products at the moment
+    chrome.contextMenus.create({
+        id: 'noMarketplace',
+        title: 'Search Bestbuy (N)',
+        contexts: ['selection'],
+        parentId: 'mainMenu'
+    });
+}
+
+chrome.runtime.onInstalled.addListener(function(){
+    createContexts();
+    contextFunctions();
 });
 
-chrome.contextMenus.create({
-    id: 'mainMenu',
-    title: 'something',
-    contexts: ['all'],
-});
-
-chrome.contextMenus.create({
-    id: 'onlineChat',
-    title:'Geeksquad Connect',
-    contexts: ['all'],
-    parentId: 'mainMenu'
-});
-chrome.contextMenus.create({
-    id: 'membershipWeb',
-    title: 'Assurant portal',
-    contexts: ['all'],
-    parentId: 'mainMenu'
-});
-
-// using just store products at the moment
-chrome.contextMenus.create({
-    id: 'noMarketplace',
-    title: 'Search Bestbuy (N)',
-    contexts: ['selection'],
-    parentId: 'mainMenu'
-});

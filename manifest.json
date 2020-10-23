@@ -1,9 +1,9 @@
 {
 	"name": "Work Extension",
-	"version": "1.0",
+	"version": "0.0.1",
 	"description": "learning google chrome extensions",
 	"background": {
-		"scripts": ["samplebackground.js"],
+		"scripts": ["contexts.js"],
 		"persistent": false
 	},
 	"permissions": ["contextMenus", "storage", "activeTab"],
