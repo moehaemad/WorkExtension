@@ -25,7 +25,7 @@ function contextFunctions(){
             case 'membershipWeb':
                 window.open(forClipboard.membershipWeb);
                 break;
-            case 'noMarketplace':
+            case 'bestbuySearch':
                 window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
                 break;
             default:
@@ -56,8 +56,8 @@ function createContexts () {
     
     // using just store products at the moment
     chrome.contextMenus.create({
-        id: 'noMarketplace',
-        title: 'Search Bestbuy (N)',
+        id: 'bestbuySearch',
+        title: 'Search Bestbuy',
         contexts: ['selection'],
         parentId: 'mainMenu'
     });
