@@ -1,31 +1,50 @@
 // 'use strict';
 
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({color: '#3aa757'}, function(){
-        console.log("Color is green");
-    })
-});
+const forClipboard = {
+    onlineChat: "Please go to geeksquad.ca/connect and in the reason for connecting please choose ",
+    membershipWeb: "https://geeksquad.assurantsolutions.com/",
+    bestbuySearch: "https://bestbuy.ca/en-ca/search?search=",
+    noMarketplace: "https://www.bestbuy.ca/en-ca/search?path=soldandshippedby0enrchstring%253ABest%2BBuy&search="
+}
+
+const phoneExtensions = {
+    billing: "1",
+    inhome: "2",
+    claims: "3",
+    techSup: "4",
+    assuredLiving: "5",
+    other: "6"
+}
 
 chrome.contextMenus.onClicked.addListener(function (info, tabs) {
-    if (info.menuItemId === 'google') window.open('https://google.com');
-    if (info.menuItemId === 'youtube') window.open('https://youtube.com');
+    if (info.menuItemId === 'onlineChat') navigator.clipboard.writeTexT(forClipboard.onlineChat);
+    if (info.menuItemId === 'membershipWeb') window.open(forClipboard.membershipWeb);
+    if (info.menuItemId === 'noMarketplace') window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
 });
 
 chrome.contextMenus.create({
-    id: 'bigmenu',
+    id: 'mainMenu',
     title: 'something',
     contexts: ['all'],
 });
 
 chrome.contextMenus.create({
-    id: 'google',
-    title:'Take me to Google',
+    id: 'onlineChat',
+    title:'Geeksquad Connect',
     contexts: ['all'],
-    parentId: 'bigmenu'
+    parentId: 'mainMenu'
 });
 chrome.contextMenus.create({
-    id: 'youtube',
-    title: 'Take me to Youtube',
+    id: 'membershipWeb',
+    title: 'Assurant portal',
     contexts: ['all'],
-    parentId: 'bigmenu'
+    parentId: 'mainMenu'
+});
+
+// using just store products at the moment
+chrome.contextMenus.create({
+    id: 'noMarketplace',
+    title: 'Search Bestbuy (N)',
+    contexts: ['selection'],
+    parentId: 'mainMenu'
 });
