@@ -7,26 +7,20 @@ const forClipboard = {
     noMarketplace: "https://www.bestbuy.ca/en-ca/search?path=soldandshippedby0enrchstring%253ABest%2BBuy&search="
 }
 
-const phoneExtensions = {
-    billing: "1",
-    inhome: "2",
-    claims: "3",
-    techSup: "4",
-    assuredLiving: "5",
-    other: "6"
-}
-
 function contextFunctions(){
     chrome.contextMenus.onClicked.addListener(function (info, tabs) {
+        let toClipboard = writeString => chrome.tabs.executeScript(tabs.id, {code: `navigator.clipboard.writeText("${writeString}")`})
         switch (info.menuItemId){
             case 'onlineChat':
-                navigator.clipboard.writeTexT(forClipboard.onlineChat);
+                toClipboard(forClipboard.onlineChat);
                 break;
             case 'membershipWeb':
-                window.open(forClipboard.membershipWeb);
+                toClipboard(forClipboard.membershipWeb);
                 break;
             case 'bestbuySearch':
-                window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
+                // Copy to clipboard in context menu and open in window on the js associate with popup.html
+                // window.open(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`);
+                toClipboard(`${forClipboard.bestbuySearch}${info.selectionText.split(' ').join('+')}`)
                 break;
             default:
                 console.log("whoops, better luck next time")
@@ -37,7 +31,7 @@ function contextFunctions(){
 function createContexts () {
     chrome.contextMenus.create({
         id: 'mainMenu',
-        title: 'something',
+        title: 'QuickBBLooks',
         contexts: ['all'],
     });
     
