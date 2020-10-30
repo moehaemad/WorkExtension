@@ -1,12 +1,12 @@
 {
 	"name": "Work Extension",
 	"version": "0.0.1",
-	"description": "learning google chrome extensions",
+	"description": "A google chrome extension for use at work to prevent consulting multiple resources.",
 	"background": {
 		"scripts": ["contexts.js"],
 		"persistent": false
 	},
-	"permissions": ["contextMenus", "storage", "activeTab", "clipboardWrite", "tabs"],
+	"permissions": ["contextMenus", "activeTab"],
 	"browser_action": {
 		"default_popup": "popup.html",
 		"default_icon": {
