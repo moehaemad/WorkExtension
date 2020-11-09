@@ -20,3 +20,8 @@ document.querySelector('.Contacts').addEventListener('click', (e) => {
     `
     e.target.insertAdjacentHTML('afterend', insertOptions);
 })
+
+// NOTES for next version
+// .nav-tabs.children[{phone,name,email,gcid}].click();
+
+// gsml.prodcorp-ocp.ca.bestbuy.com/ --search and login --
