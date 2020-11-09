@@ -2,8 +2,24 @@
 <html lang="en">
 <head>
     <style>
+        .Contacts{
+            border: 1px solid black;
+            background: rgba(128, 128, 128, 0.623);
+            color:rgb(0, 123, 160);
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+        }
+        ol{
+            display: flex;
+            flex-direction: row;
+        }
         ol li{
-            margin: 1rem;
+            margin: 8px;
+            border: 1px solid black;
+        }
+        .Addons li{
+            margin: 8px;
             border: 1px solid black;
             padding: 2px;
         }
@@ -12,16 +28,33 @@
             border-radius: 5px;
             margin-top: 15px;
         }
+        .Addons span{
+            color: rgb(0, 133, 173);
+            font-weight: bold;
+        }
+        .Addons {
+            display: grid;
+            margin: 0px;
+            grid-template-columns: repeat(3, 1fr);
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
-    <ol>
-        <li>Billing</li>
-        <li>In-home</li>
-        <li>Claims</li>
-        <li>Tech sup.</li>
-        <li>Assured Living</li>
-        <li>Other Q's</li>
+    <div class="Contacts">
+        Contact Info (click)
+    </div>
+    <ol class="Addons">
+        <li >Online Comp. setup <span>$79.99</span></li>
+        <li >Tuneup <span>$49.99</span></li>
+        <li >D&R <span>$189.99</span></li>
+        <li >D&R w/ Data <span>$229.99</span></li>
+        <li >Component Installation <span>$29.99</span></li>
+        <li >Printer T-shoot <span>$49.99</span></li>
+        <li >Quick Fix <span>$39.99</span></li>
+        <li >Data Transfer <span>$99.99</span></li>
+        <li >Network Setup <span>$79.99</span></li>
+        <li >Photo Software Tutorial <span>$49.99</span></li>
     </ol>
     <input type="text" id="input"/>
     <button id="button">BestBuy Search</button>
